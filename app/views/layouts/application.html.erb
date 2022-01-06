@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Journal</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/06d709d501.js" crossorigin="anonymous"></script>
+
+  </head>
+
+  <body class="bg-yellow-100 p-3 max-h-screen h-screen">
+
+    <%= yield %>
+    <%= toastr_flash %>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+// Place all the styles related to the Categories controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+.add-button{
+	width: 100%;
+}
+
+@media (min-width:768px){
+	.card {
+		height:100%;
+		max-height:60vw;
+	}
+
+	.add-button {
+		width: 25vw;
+	}
+}

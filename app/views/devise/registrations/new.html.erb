@@ -1,0 +1,36 @@
+
+<section class="flex flex-col md:flex-row h-screen">
+  <%= render 'main/hero' %>
+  <div class="h-7/8 md:w-1/4 flex flex-col items-center justify-center md:self-center">
+    <h2>Sign up</h2>
+
+    <%=form_for(resource, as: resource_name, url: registration_path(resource_name), :html=> {:class => 'w-4/5 flex flex-col'}) do |f|   %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="py-1">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"w-full border-2 border-yellow-400 p-1 h-10 my-1 rounded-md"%>
+      </div>
+
+      <div class="py-1">
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %>
+        <%= f.password_field :password, autocomplete: "new-password" , class:"w-full border-2 border-yellow-400 p-1 h-10 my-1 rounded-md"%>
+      </div>
+
+      <div class="py-1">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"w-full border-2 border-yellow-400 p-1 h-10 my-1 rounded-md" %>
+      </div>
+
+      <div class="actions flex justify-end">
+        <%= f.submit "Sign up", class:"bg-yellow-400 text-white hover:opacity-70 rounded-full p-2 px-4 h-10 m-2 cursor-pointer"%>
+      </div>
+    <% end %>
+
+    Already have an account?
+    <%= render "devise/shared/links" %>
+  </div>
+</section>

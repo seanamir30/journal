@@ -1,0 +1,36 @@
+
+
+<%= form_with model: category, class:"flex flex-col max-h-screen h-screen w-screen justify-center items-center" do |form| %>
+    <% if category.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(category.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+        <ul>
+          <% category.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <p class="text-lg text-gray-700">
+      <% if category.id? %>
+        Edit
+      <%else%>
+        Create
+      <%end%>
+
+      a Category
+    </p>
+
+    <div class="flex flex-col mx-3 h-4/5 md:w-1/2">
+        <%= form.text_field :title ,placeholder:"Title",  class:"border-2 border-yellow-400 focus:border-yellow-300 p-1 h-12 my-1 outline-none w-full rounded-md"%>
+
+        <%= form.text_area :description,placeholder:"Description", class: "border-2 border-yellow-400 focus:border-yellow-300 p-1 my-1 h-3/5 outline-none w-full rounded-md" %>
+
+      <div class="actions flex justify-end">
+        <%= link_to 'Back', :back, class:"bg-yellow-400 text-white rounded-full p-2 px-4 h-10 m-2 cursor-pointer"%>
+        <%= form.submit 'Submit', class:"bg-white rounded-full p-2 px-4 h-10 m-2 cursor-pointer"%>
+      </div>
+    </div>
+<% end %>

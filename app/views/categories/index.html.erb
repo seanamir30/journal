@@ -1,0 +1,134 @@
+
+  <header class="flex text-lg px-1 justify-between">
+    <div class="text-gray-700">
+      <h1><%= @user.email %></h1>
+      <p>Here are some of your tasks</p>
+    </div>
+    <div>
+      <%= link_to "Logout", destroy_user_session_path, :method => :delete %>
+    </div>
+  </header>
+
+  <section class = "text-white md:max-w-screen w-full">
+    <section class=" md:flex md:overflow-x-auto">
+      <div class="w-full md:w-1/4 md:float-left md:flex-shrink-0 rounded overflow-hidden shadow-lg md:m-5 my-5 card">
+        <h2 class="bg-yellow-400 py-3 flex justify-between px-3 font-extrabold text-xl">
+          Here are some of your tasks due for today!
+        </h2>
+        <div class="bg-yellow-300 md:h-full py-1 px-3">
+          <div class="flex flex-col justify-between w-full">
+            <% @tasks.each do |task| %>
+             <div class="flex justify-between hover:opacity-100 opacity-80 w-full">
+              <div>
+                <h3 class="font-bold py-1 text-lg flex justify-between">
+                  <span class="underline whitespace-pre"><%= task.title %></span>
+                </h3>
+                <p>Due on <%= task.due_date.strftime("%m/%d/%Y") %></p>
+                <p class="text-lg whitespace-pre-line">
+                  <%= task.description %>  
+                </p>
+              </div>
+              <div>
+                <%= link_to edit_category_task_path(task, category_id: task.category_id) do%>
+                  <i class="far fa-edit text-white"></i>
+                <% end %>
+                <%= link_to category_task_path(task, category_id: task.category_id), method: :delete do %>
+                  <i class="far fa-trash-alt text-white"></i>
+                <% end %>
+              </div>
+
+              
+
+            </div>
+            <hr class="my-1">
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+    
+      <% @categories.each do |category| %>
+
+        <div class="w-full md:w-1/4 md:float-left md:flex-shrink-0 rounded overflow-auto shadow-lg md:m-5 my-5 card">
+          <h2 class = " bg-yellow-400 py-3 flex justify-between px-3 font-extrabold text-xl">
+            <%= category.title %>
+            <div>
+              <%= link_to new_category_task_path(category) do%>
+                <span class=" mx-1">+</span>
+              <% end %>
+              <%= link_to edit_category_path(category) do%>
+                <i class="far fa-edit "></i>
+              <% end %>
+              <%= link_to category, method: :delete do %>
+                <i class="far fa-trash-alt "></i>
+              <% end %>
+            </div>
+            
+          </h2>
+          <div class="bg-yellow-300 md:h-full py-1 px-3">
+            <% if category.tasks.count == 0 %>
+              You got no tasks here!
+            <% end %>
+            <% category.tasks.each do |task| %>
+            <div class="flex justify-between hover:opacity-100 opacity-80 w-full">
+              <div>
+                <h3 class="font-bold py-1 text-lg flex justify-between">
+                  <span class="underline whitespace-pre"><%= task.title %></span>
+                </h3>
+                <p>Due on <%= task.due_date.strftime("%m/%d/%Y") %></p>
+                <p class="text-lg whitespace-pre-line">
+                  <%= task.description %>  
+                </p>
+              </div>
+              <div>
+                <%= link_to edit_category_task_path(task, category_id: task.category_id) do%>
+                  <i class="far fa-edit text-white"></i>
+                <% end %>
+                <%= link_to category_task_path(task, category_id: task.category_id), method: :delete do %>
+                  <i class="far fa-trash-alt text-white"></i>
+                <% end %>
+              </div>
+
+              
+
+            </div>
+            <hr class="my-1">
+            <% end %>
+          </div>
+        </div>
+
+      <% end %>
+    
+      <%= link_to new_category_path do%>
+      <div class="md:m-5 card font-extrabold text-xl text-gray-700 font-extrabold text-black py-5 border-dashed border-2 border-gray-700 flex items-center justify-center rounded md:h-4/5 add-button">+</div>
+    </section>
+  </section>
+<% end %>
+
+<!-- <table>
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.title %></td>
+        <td><%= category.description %></td>
+        <td><%= link_to 'Show', category %></td>
+        <td><%= link_to 'Edit', edit_category_path(category) %></td>
+        <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Add Task', new_category_task_path(category) %></td>
+      </tr>
+      <% category.tasks.each do |task| %>
+        <tr>
+          <td><%= task.title %></td>
+          <td><%= task.description %></td>
+          <td><%= task.due_date %></td>
+        </tr>
+        
+      <% end %>
+      
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Category', new_category_path %> -->

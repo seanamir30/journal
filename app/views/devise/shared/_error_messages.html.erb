@@ -1,0 +1,8 @@
+<% if resource.errors.any? %>
+  <% resource.errors.full_messages.each do |message| %>
+        <script type="text/javascript">
+          let message = '<%= message %>';
+          toastr.error(message);
+        </script>
+  <% end %>
+<% end %>

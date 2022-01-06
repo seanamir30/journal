@@ -1,0 +1,31 @@
+<section class="flex flex-col md:flex-row h-screen">
+  <%= render 'main/hero' %>
+  <div class="h-7/8 flex md:w-1/4 flex-col items-center justify-center md:self-center">
+    <h2>Log in</h2>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name),  :html=> {:class => 'w-4/5 flex flex-col'}) do |f| %>
+      <div class="py-1">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"w-full border-2 border-yellow-400 p-1 h-10 my-1 rounded-md" %>
+      </div>
+
+      <div class="py-1">
+        <%= f.label :password %>
+        <%= f.password_field :password, autocomplete: "current-password", class:"w-full border-2 border-yellow-400 p-1 h-10 my-1 rounded-md" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="py-1 flex">
+          <%= f.check_box :remember_me%>
+          <%= f.label :remember_me %>
+        </div>
+      <% end %>
+
+      <div class="actions flex justify-end">
+        <%= f.submit "Log in", class:"bg-yellow-400 text-white hover:opacity-70 rounded-full p-2 px-4 h-10 m-2 cursor-pointer" %>
+      </div>
+    <% end %>
+    Don't have an account yet?
+    <%= render "devise/shared/links" %>
+  </div>
+</section>
