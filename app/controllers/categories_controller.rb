@@ -6,7 +6,12 @@ class CategoriesController < ApplicationController
   def index
     @categories = current_user.categories
     @user = current_user
-    @tasks = Task.where(due_date: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
+    task_today = []
+    @categories.each do |category|
+      task = Task.where(due_date: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day, category_id: category.id)
+      task_today.push(task)
+    end
+    @tasks = task_today
   end
 
   # GET /categories/1 or /categories/1.json
